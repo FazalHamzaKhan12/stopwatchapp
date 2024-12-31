@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class StopwatchPage extends StatefulWidget {
@@ -8,6 +9,7 @@ class StopwatchPage extends StatefulWidget {
 }
 
 class _StopwatchPageState extends State<StopwatchPage> {
+  List<String> laps = ["", ""];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     children: [
                       InkWell(
                         borderRadius: BorderRadius.circular(100),
-                        onTap: (){},
+                        onTap: () {},
                         child: Container(
                           height: 80,
                           width: 80,
@@ -53,8 +55,8 @@ class _StopwatchPageState extends State<StopwatchPage> {
                         ),
                       ),
                       InkWell(
-                        borderRadius:    BorderRadius.circular(120),
-                        onTap: (){},
+                        borderRadius: BorderRadius.circular(120),
+                        onTap: () {},
                         child: Container(
                           height: 80,
                           width: 80,
@@ -76,8 +78,34 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     ],
                   ),
                 ),
-              )
-            ],
+              ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Align content properly
+                  children: [
+                    Text(
+                      "Lap ${index + 1}",
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    Text(
+                      "00:00:00",
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    )
+                  ],
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return Divider(
+                  color: Colors.grey[900],
+                );
+              },
+              itemCount: laps.length, // Total items in the list
+            ),
+          )]
           ),
         ),
       ),
